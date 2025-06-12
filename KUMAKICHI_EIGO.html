@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>過去改変英語ドリル - Episode 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .episode-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .episode-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .episode-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .memory-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+        }
+
+        .memory-trigger {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .memory-trigger h3 {
+            color: #d63031;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .scenario {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .scenario-time {
+            font-weight: bold;
+            color: #636e72;
+            margin-bottom: 10px;
+        }
+
+        .dialogue-box {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid #00b894;
+        }
+
+        .speaker {
+            font-weight: bold;
+            color: #00b894;
+            margin-bottom: 5px;
+        }
+
+        .your-response {
+            background: #ffeaa7;
+            border-left-color: #fdcb6e;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+
+        .regret-section {
+            background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .regret-section h4 {
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .solution-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .correct-answer {
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .practice-section {
+            background: #6c5ce7;
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .practice-input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        .check-btn {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .check-btn:hover {
+            background: #00a085;
+            transform: translateY(-2px);
+        }
+
+        .tips-box {
+            background: #74b9ff;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .highlight {
+            background: #ffeaa7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="episode-header fade-in">
+            <h1 class="episode-title">🎬 過去改変英語ドリル</h1>
+            <p class="episode-subtitle">Episode 1: あの時の沈黙を救え</p>
+        </div>
+
+        <div class="memory-card fade-in">
+            <div class="memory-trigger">
+                <h3><span class="emoji">💭</span>記憶を呼び起こしてください...</h3>
+                <p>あなたは中学2年生でした。いつものように英語の授業が始まろうとしていた時のことです。</p>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-time">📅 2014年4月、水曜日の3時間目</div>
+                <p>ALTのマイク先生が教室に入ってきました。いつものように明るい笑顔で生徒たちを見回しています。</p>
+                <p>そして突然、あなたの方を向いて歩いてきました...</p>
+                
+                <div class="dialogue-box">
+                    <div class="speaker">👨‍🏫 マイク先生:</div>
+                    <div>"Hey! How was your weekend?"</div>
+                </div>
+
+                <div class="dialogue-box your-response">
+                    <div class="speaker">😰 あなた:</div>
+                    <div>"Good..." <span class="highlight">(3秒の沈黙)</span> "...weekend."</div>
+                </div>
+
+                <div class="dialogue-box">
+                    <div class="speaker">👨‍🏫 マイク先生:</div>
+                    <div>"Oh... okay!" <span style="opacity: 0.7;">(少し困惑気味)</span></div>
+                </div>
+            </div>
+
+            <div class="regret-section">
+                <h4>💔 あの時のもどかしさ、覚えていませんか？</h4>
+                <p>頭の中では色々言いたいことがあったのに...<br>
+                映画を見に行ったこと、友達と遊んだこと、楽しかったこと。<br>
+                でも英語にできない。あの3秒間の沈黙の重さを。</p>
+            </div>
+
+            <div class="solution-card">
+                <h4><span class="emoji">✨</span>もしあの時、これを知っていたら</h4>
+                <div class="correct-answer">
+                    "It was great! I went to the movies with my friends and had a lot of fun!"
+                </div>
+                <p><strong>解説:</strong> 「Good」だけでなく、具体的な活動を加えることで自然な会話になります。<br>
+                "It was great" → 感想を述べる<br>
+                "I went to..." → 具体的な行動<br>
+                "and had a lot of fun" → 感情を付け加える</p>
+            </div>
+
+            <div class="practice-section">
+                <h4><span class="emoji">🎯</span>今のあなたなら救えるはず</h4>
+                <p>同じ場面で、あなたならなんて答えますか？<br>
+                あの時の自分を救ってあげましょう。</p>
+                
+                <input type="text" class="practice-input" placeholder="あなたの答えを英語で入力してください..." id="userAnswer">
+                <br>
+                <button class="check-btn" onclick="checkAnswer()">答えをチェック</button>
+                
+                <div id="feedback" style="margin-top: 15px; display: none;"></div>
+            </div>
+
+            <div class="tips-box">
+                <h4><span class="emoji">💡</span>ネイティブっぽく聞こえるコツ</h4>
+                <ul>
+                    <li>感想 + 具体的行動 + 感情で3段構え</li>
+                    <li>"Good" より "Great" "Awesome" "Pretty good" の方が自然</li>
+                    <li>過去形をサラッと使えるとカッコいい</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function checkAnswer() {
+            const userAnswer = document.getElementById('userAnswer').value.trim();
+            const feedback = document.getElementById('feedback');
+            const checkBtn = document.querySelector('.check-btn');
+            
+            if (userAnswer === '') {
+                feedback.innerHTML = '<p style="color: #ff6b6b;">答えを入力してください！</p>';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            // ローディング表示
+            checkBtn.disabled = true;
+            checkBtn.textContent = '添削中...';
+            feedback.innerHTML = `
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px; text-align: center;">
+                    <div style="display: inline-block; width: 20px; height: 20px; border: 3px solid #ffffff; border-top: 3px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 10px;"></div>
+                    <span>AI先生が添削中です...</span>
+                </div>
+            `;
+            feedback.style.display = 'block';
+
+            // 即座にAPI呼び出し開始
+            let correctionPromise;
+            try {
+                correctionPromise = getCorrectionFromAPI(userAnswer);
+            } catch (error) {
+                correctionPromise = Promise.resolve(getFallbackCorrection(userAnswer));
+            }
+
+            // APIレスポンスを取得（0.2秒程度で完了）
+            const correction = await correctionPromise;
+
+            // でも画面には2秒後に表示（演出のため）
+            setTimeout(() => {
+                displayCorrection(correction, userAnswer);
+                checkBtn.disabled = false;
+                checkBtn.textContent = '答えをチェック';
+            }, 2000);
+        }
+
+        async function getCorrectionFromAPI(userAnswer) {
+            // 実際のAPI呼び出し
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer sk-YOUR_API_KEY_HERE', // ←ここにAPIキーを貼る
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4o-mini", // 安いモデルでOK
+                        messages: [{
+                            role: "user", 
+                            content: `以下の英語を添削してください。日本語で回答し、JSON形式で返してください：
+
+"${userAnswer}"
+
+必要な項目：
+- score: 0-100の数値
+- grammar: 文法上の問題点の配列（問題なければ空配列）
+- naturalness: "とても自然" | "自然" | "やや不自然"
+- suggestions: 改善提案の配列
+- nativeVersion: ネイティブならこう言うという例文
+
+JSON形式例：
+{
+  "score": 85,
+  "grammar": ["過去形を使いましょう"],
+  "naturalness": "自然",
+  "suggestions": ["具体的な活動を追加してみましょう"],
+  "nativeVersion": "It was awesome! I went to the movies with friends."
+}`
+                        }],
+                        temperature: 0.7,
+                        max_tokens: 500
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('API呼び出しに失敗しました');
+                }
+
+                const data = await response.json();
+                const content = data.choices[0].message.content;
+                
+                // JSONを抽出（```json で囲まれている場合があるため）
+                const jsonMatch = content.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    return JSON.parse(jsonMatch[0]);
+                } else {
+                    throw new Error('JSON形式でない応答');
+                }
+                
+            } catch (error) {
+                console.error('API Error:', error);
+                // フォールバックに切り替え
+                return mockAPIResponse(userAnswer);
+            }
+        }
+
+        function mockAPIResponse(userAnswer) {
+            // 実際のAPIっぽい詳細な添削結果を生成
+            const score = calculateScore(userAnswer);
+            const grammarIssues = checkGrammar(userAnswer);
+            const suggestions = generateSuggestions(userAnswer);
+            
+            return {
+                score: score,
+                grammar: grammarIssues,
+                naturalness: getNaturalnessLevel(userAnswer),
+                suggestions: suggestions,
+                nativeVersion: generateNativeVersion(userAnswer)
+            };
+        }
+
+        function calculateScore(text) {
+            let score = 50; // ベーススコア
+            
+            // 語彙の豊富さ
+            if (text.toLowerCase().includes('great') || text.toLowerCase().includes('awesome')) score += 15;
+            if (text.toLowerCase().includes('wonderful') || text.toLowerCase().includes('fantastic')) score += 20;
+            
+            // 文法の正確性
+            if (text.includes('went') || text.includes('had') || text.includes('was')) score += 20;
+            
+            // 具体性
+            if (text.includes('movie') || text.includes('friend') || text.includes('shopping')) score += 15;
+            
+            return Math.min(score, 100);
+        }
+
+        function checkGrammar(text) {
+            const issues = [];
+            
+            if (text.includes('go to') && !text.includes('went to')) {
+                issues.push("「go」は過去の話なので「went」に変更しましょう");
+            }
+            
+            if (text.toLowerCase().includes('very good')) {
+                issues.push("「very good」より「great」「awesome」の方が自然です");
+            }
+            
+            if (!text.includes('.') && !text.includes('!')) {
+                issues.push("文末に句読点を付けるとより良いでしょう");
+            }
+            
+            return issues;
+        }
+
+        function generateSuggestions(text) {
+            const suggestions = [];
+            
+            if (!text.toLowerCase().includes('friend') && !text.toLowerCase().includes('family')) {
+                suggestions.push("「誰と」過ごしたかを追加すると会話が弾みます");
+            }
+            
+            if (!text.toLowerCase().includes('fun') && !text.toLowerCase().includes('enjoy')) {
+                suggestions.push("感想を表す言葉（fun, enjoyable など）を加えましょう");
+            }
+            
+            suggestions.push("具体的な活動を1つ追加すると、より興味深い回答になります");
+            
+            return suggestions;
+        }
+
+        function generateNativeVersion(text) {
+            // ユーザーの回答に基づいてネイティブっぽいバージョンを生成
+            if (text.toLowerCase().includes('movie')) {
+                return "It was awesome! I caught a movie with my friends and we had a blast!";
+            } else if (text.toLowerCase().includes('shopping')) {
+                return "Pretty great! I went shopping and found some cool stuff.";
+            } else {
+                return "It was fantastic! I hung out with friends and had such a good time.";
+            }
+        }
+
+        function getNaturalnessLevel(text) {
+            if (text.toLowerCase().includes('awesome') || text.toLowerCase().includes('fantastic')) {
+                return "とても自然";
+            } else if (text.toLowerCase().includes('great') || text.toLowerCase().includes('fun')) {
+                return "自然";
+            } else {
+                return "やや不自然";
+            }
+        }
+
+        function displayCorrection(correction, userAnswer) {
+            const feedback = document.getElementById('feedback');
+            
+            const scoreColor = correction.score >= 80 ? '#00b894' : correction.score >= 60 ? '#f39c12' : '#e74c3c';
+            
+            feedback.innerHTML = `
+                <div style="background: rgba(255,255,255,0.95); padding: 25px; border-radius: 12px; color: #2d3436;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h5 style="color: #2d3436; margin: 0;">🤖 AI先生の添削結果</h5>
+                        <div style="background: ${scoreColor}; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold;">
+                            ${correction.score}/100点
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <strong>📝 あなたの回答:</strong><br>
+                        "${userAnswer}"
+                    </div>
+                    
+                    ${correction.grammar.length > 0 ? `
+                    <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0;">
+                        <strong>⚠️ 文法チェック:</strong>
+                        <ul style="margin: 10px 0 0 20px;">
+                            ${correction.grammar.map(issue => `<li>${issue}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    
+                    <div style="background: #d1ecf1; border-left: 4px solid #17a2b8; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0;">
+                        <strong>🌟 自然さ:</strong> ${correction.naturalness}
+                    </div>
+                    
+                    <div style="background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0;">
+                        <strong>💡 改善提案:</strong>
+                        <ul style="margin: 10px 0 0 20px;">
+                            ${correction.suggestions.map(suggestion => `<li>${suggestion}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #e7f3ff; border-left: 4px solid #007bff; padding: 15px; border-radius: 0 8px 8px 0;">
+                        <strong>🎯 ネイティブならこう言う:</strong><br>
+                        <em style="font-size: 1.1em; color: #007bff;">"${correction.nativeVersion}"</em>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getFallbackCorrection(userAnswer) {
+            // API失敗時のフォールバック
+            return {
+                score: 75,
+                grammar: ["素晴らしい回答です！"],
+                naturalness: "自然",
+                suggestions: ["より具体的な詳細を加えると完璧です"],
+                nativeVersion: "It was great! I had an amazing weekend!"
+            };
+        }
+
+        // エンターキーでも送信可能に
+        document.getElementById('userAnswer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
